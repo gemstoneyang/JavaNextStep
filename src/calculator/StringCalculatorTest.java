@@ -26,24 +26,24 @@ public class StringCalculatorTest {
     }
     
     @Test
-    public void addComma() {
+    public void addComma() throws Exception {
         assertEquals(3, cal.add("1,2"));
         assertEquals(14, cal.add("10,2,2"));
     }
     
     @Test
-    public void addColon() {
+    public void addColon() throws Exception {
         assertEquals(3, cal.add("1:2"));
         assertEquals(14, cal.add("10:2:2"));
     }
     
     @Test
-    public void addCommaAndColon() {
+    public void addCommaAndColon() throws Exception {
         assertEquals(14, cal.add("10,3:1"));
     }
     
     @Test
-    public void addCustom() {
+    public void addCustom() throws Exception {
         assertEquals(6, cal.add("//;\n1;2;3"));
         assertEquals(10, cal.add("//]\n1]2:3,4"));
     }
