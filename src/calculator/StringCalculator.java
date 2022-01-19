@@ -4,40 +4,30 @@ import java.util.regex.*;
 
 public class StringCalculator {
     int add(String text) {
-        if (text == null || text.isEmpty()) {
-            return 0;
-        }
+        if (text == null || text.isEmpty()) return 0;
         
         int sum = 0;
+        String delimeter = ",|:";
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if(m.find()) {
-            String customDelimeter = m.group(1);
-            String[] tokens = m.group(2).split(customDelimeter);
-            for(String token : tokens) {
-                String[] numbers = token.split(",|:");
-                
-                for(String number : numbers) {
-                    int num = Integer.parseInt(number);
-                    if (num < 0) {
-                        throw new RuntimeException("input negative number!");
-                    } else {
-                        sum += num;
-                    }
-                }
-            } 
+            delimeter += "|"+m.group(1);
+            text = m.group(2);
         }
-        else {
-            String[] numbers = text.split(",|:");
-            for(String number : numbers) {
-                int num = Integer.parseInt(number);
-                    if (num < 0) {
-                        throw new RuntimeException("input negative number!");
-                    } else {
-                        sum += num;
-                    }
-            }
+        for(String number : splitNumbers(text, delimeter)) {
+            sum += changeNumbers(number);
         }
         
         return sum;
+    }
+    private int changeNumbers(String number) {
+        int num = Integer.parseInt(number);
+        if (num < 0) {
+            throw new RuntimeException("input negative number!");
+        }
+        return num;
+    }
+    private String[] splitNumbers(String text, String delimeter) {
+        String[] numbers = text.split(delimeter);
+        return numbers;
     }
 }
