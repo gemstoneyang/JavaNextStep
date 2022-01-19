@@ -49,7 +49,7 @@ public class StringCalculatorTest {
     }
     
     @Test(expected = RuntimeException.class)
-    public void addMinus() {
-        cal.sumString("-1:-2");
+    public void addNegative() throws Exception {
+        cal.add("-1:-2");
     }
 }

@@ -17,14 +17,24 @@ public class StringCalculator {
                 String[] numbers = token.split(",|:");
                 
                 for(String number : numbers) {
-                    sum += Integer.parseInt(number);
+                    int num = Integer.parseInt(number);
+                    if (num < 0) {
+                        throw new RuntimeException("input negative number!");
+                    } else {
+                        sum += num;
+                    }
                 }
             } 
         }
         else {
             String[] numbers = text.split(",|:");
             for(String number : numbers) {
-                sum += Integer.parseInt(number);
+                int num = Integer.parseInt(number);
+                    if (num < 0) {
+                        throw new RuntimeException("input negative number!");
+                    } else {
+                        sum += num;
+                    }
             }
         }
         
