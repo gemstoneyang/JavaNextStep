@@ -12,14 +12,25 @@ public class StringCalculator {
         return text == null || text.isEmpty();
     }
     private String[] split(String text) {
-        String[] texts = text.split(",");
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        if (m.find()) {
+            String customDelimeter = m.group(1);
+            return m.group(2).split(customDelimeter);
+        }
         
-        return texts;
+        return text.split(",|:");
+    }
+    private int toPositive(String text) {
+        int number = Integer.parseInt(text);
+        if (number < 0) {
+            throw new RuntimeException();
+        }
+        return number;
     }
     private int[] toInteger(String[] texts) {
         int[] numbers = new int[texts.length];
         for(int i=0; i<numbers.length; i++) {
-            numbers[i] = Integer.parseInt(texts[i]);
+            numbers[i] = toPositive(texts[i]);
         }
         return numbers;
     }

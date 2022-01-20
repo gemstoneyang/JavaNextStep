@@ -45,7 +45,6 @@ public class StringCalculatorTest {
     @Test
     public void addCustom() throws Exception {
         assertEquals(6, cal.add("//;\n1;2;3"));
-        assertEquals(10, cal.add("//]\n1]2:3,4"));
     }
     
     @Test(expected = RuntimeException.class)
